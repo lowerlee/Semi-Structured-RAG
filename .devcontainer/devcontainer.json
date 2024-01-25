@@ -12,7 +12,7 @@
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [1234],
+	// "forwardPorts": [1234],
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -29,6 +29,6 @@
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root",
 
-	// "postCreateCommand": "pip3 install -r requirements.txt && brew install -r brew_requirements.txt"
-	"postCreateCommand": "pip3 install -r requirements.txt && while IFS= read -r package; do brew install \"$package\"; done < brew_requirements.txt"
+	"postCreateCommand": "pip3 install -r requirements.txt && brew install tesseract && brew install poppler"
+	// "postCreateCommand": "pip3 install -r requirements.txt && while IFS= read -r package; do brew install \"$package\"; done < brew_requirements.txt"
 }

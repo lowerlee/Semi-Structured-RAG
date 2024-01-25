@@ -30,7 +30,7 @@ COPY brew_requirements.txt /app/
 # RUN brew install --no-cache-dir -r brew_requirements.txt
 
 # Make port 1234 available to the world outside this container
-EXPOSE 1234
+# EXPOSE 1234
 
 # Define environment variables, if any
 # ENV NAME=Value
