@@ -3,3 +3,4 @@ services:
   dev:
     extra_hosts: 
       - "host.docker.internal:1234"
+      - "host.docker.internal:11434"

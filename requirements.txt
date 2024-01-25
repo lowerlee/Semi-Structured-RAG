@@ -5,3 +5,4 @@ langchainhub
 unstructured[all-docs]
 pydantic
 lxml
+chromadb
