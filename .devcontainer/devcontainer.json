@@ -8,6 +8,10 @@
 
 	"build": {"dockerfile": "Dockerfile", "context": ".."},
 
+	// Configuration for running dev container on remote server
+	"workspaceMount": "source=/home/ubuntu/Semi-Structured-RAG,target=/workspace,type=bind,consistency=cached",
+	"workspaceFolder": "/workspace",
+
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
@@ -17,7 +21,7 @@
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
-			"sttings": {},
+			"settings": {},
 			"extensions": [
 				"sourcegraph.cody-ai",
 				"ms-python.python",
