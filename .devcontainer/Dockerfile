@@ -18,11 +18,19 @@ RUN curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearm
     && apt-get update && apt-get install -y nvidia-container-toolkit \
     && rm -rf /var/lib/apt/lists/*
 
+# Create a non-root user
+RUN useradd -m youruser && \
+    chown -R youruser /home/youruser
+
+USER youruser
+
 # Install Homebrew
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+USER root
+
 # Add Homebrew to PATH
-ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+ENV PATH="/home/youruser/.linuxbrew/bin:/home/youruser/.linuxbrew/sbin:${PATH}"
 
 # Set the working directory in the container
 WORKDIR /app
@@ -30,12 +38,6 @@ WORKDIR /app
 # Copy the requirements file into the container at /app
 COPY requirements.txt /app/
 COPY brew_requirements.txt /app/
-
-# # Install any needed packages specified in requirements.txt
-# RUN pip install --no-cache-dir -r requirements.txt
-
-# # Install a package using Homebrew
-# RUN brew install --no-cache-dir -r brew_requirements.txt
 
 # Make port 1234 available to the world outside this container
 # EXPOSE 1234
