@@ -19,9 +19,13 @@ RUN curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearm
     && rm -rf /var/lib/apt/lists/*
 
 # Create a non-root user
-RUN useradd -m youruser && \
-    chown -R youruser /home/youruser
+RUN useradd -m youruser
 
+# Create the Homebrew directory and set permissions
+RUN mkdir -p /home/linuxbrew/.linuxbrew && \
+    chown -R youruser:youruser /home/linuxbrew
+
+# Switch to youruser
 USER youruser
 
 # Install Homebrew
