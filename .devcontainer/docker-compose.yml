@@ -4,3 +4,25 @@ services:
     extra_hosts: 
       - "host.docker.internal:1234"
       - "host.docker.internal:11434"
+    # Include other configuration for your dev service here:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    # volumes:
+    #   - .:/workspace
+    # ports:
+    #   - "your_port:your_port"
+
+  ollama:
+    image: james1475561/ollama
+    restart: unless-stopped
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    environment:
+      # Uncomment the line below if you're using an NVIDIA GPU
+      # - NVIDIA_VISIBLE_DEVICES=all
+    # Depending on your needs, you might not need the command option below, 
+    # but you can customize startup commands for Ollama here if necessary.
+    # command: "-d" # This is likely not needed as the image should handle its own default command
